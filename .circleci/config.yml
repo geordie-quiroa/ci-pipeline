@@ -12,6 +12,11 @@ jobs:
       - image: circleci/node:12.16.1
     steps:
       - run: echo "world"
+  print_user:
+    docker:
+      - image: circleci/node:12.16.1
+    steps:
+      - run: echo "<< user >>"
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -21,3 +26,6 @@ workflows:
       - print_world:
           requires:
             - print_hello
+      - print_user:
+          requires:
+            - print_world
