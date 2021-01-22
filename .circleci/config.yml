@@ -16,7 +16,11 @@ jobs:
     docker:
       - image: circleci/node:12.16.1
     steps:
-      - run: echo $user
+      - checkout
+      - run:
+          name: "echo an env variable in console"
+          command: |
+            echo $user
 workflows:
   # Name the workflow "welcome"
   welcome:
