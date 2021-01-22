@@ -4,12 +4,12 @@ version: 2.1
 jobs:
   print_hello:
     docker:
-      - image: circleci/node:18.0.0
+      - image: circleci/node:12.16.1
     steps:
       - run: echo "Hello"
   print_world:
     docker:
-      - image: circleci/node:18.0.0
+      - image: circleci/node:12.16.1
     steps:
       - run: echo "world"
 workflows:
