@@ -6,7 +6,7 @@ commands:
     description: "A very simple command to print workflow id"
     parameters:
       user_name:
-        type: String
+        type: "string"
         default: "Geordie Quiroa"
     steps:
       - run: echo ${CIRCLE_WORKFLOW_ID} by << parameters.user_name >>
@@ -29,6 +29,15 @@ jobs:
       - run: cat ~/output.txt
       - print_pipeline_id:
           user_name: $user
+  fail_on_purpose:
+    docker:
+      - image: circleci/node:12.16.1
+    steps:
+      - run: return 1
+      - run:
+          name: On error
+          command: echo "Hello Error!"
+          when: on_fail
   print_hello:
     docker:
       - image: circleci/node:12.16.1
@@ -64,3 +73,4 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
+      - fail_on_purpose
